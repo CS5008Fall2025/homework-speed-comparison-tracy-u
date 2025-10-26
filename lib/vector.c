@@ -71,7 +71,7 @@ void __double_vector(MovieVector *vector) {
  * @param index the index to start shifting from
 */
 void __shift_right(MovieVector *vector, int index) {
-    for (int i = vector->size; i > index; i--) {  // STUDENT: What is the BigO of this operation?
+    for (int i = vector->size; i > index; i--) {  // STUDENT: What is the BigO of this operation? O(n)
         vector->movies[i] = vector->movies[i - 1];
     }
 }
@@ -129,7 +129,7 @@ void vector_add_back(MovieVector *vector, Movie *movie) {
  * @param movie the movie to add
 */
 void vector_add_front(MovieVector *vector, Movie *movie) {
-    vector_insert(vector, movie, 0); // STUDENT: when inserting at the front, what helper function is *always* called in addition to vector_insert?
+    vector_insert(vector, movie, 0); // STUDENT: when inserting at the front, what helper function is *always* called in addition to vector_insert? __shift_right()
 }
 
 /**
