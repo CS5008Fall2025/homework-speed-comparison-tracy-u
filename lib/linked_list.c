@@ -1,9 +1,9 @@
 /**
  * Singly linked list implementation.
  *
- * @author: STUDENT ADD YOUR NAME
+ * @author: Tracy U.
  * @class: CS 5008
- * @term: UPDATE WITH CURRENT SEMESTER
+ * @term: Fall 2025
  */
 
 #include <stdlib.h>
@@ -84,7 +84,15 @@ void clear_and_free_linked_list(LinkedList *list) {
  * @param movie the movie to add
  */
 void ll_add_front(LinkedList *list, Movie *movie) {
-    // STUDENT TODO: Implement
+    node *new_node = __ll__new_node(movie);
+    if (list->head != NULL) {
+        new_node->next = list->head; // set the next for the new node to the head
+    }
+    if (list->tail == NULL) {
+        list->tail = new_node;
+    }
+    list->head = new_node; // switch head to new node
+    list->size++; // inc size
 }
 
 /**
