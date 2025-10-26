@@ -106,7 +106,15 @@ void ll_add_front(LinkedList *list, Movie *movie) {
  * @param movie the movie to add
  */
 void ll_add_back(LinkedList *list, Movie *movie) {
-    // STUDENT TODO: Implement
+    node *new_node = __ll__new_node(movie);
+    if (list->tail != NULL) {
+        list->tail->next = new_node; // set the next for the new node to the head
+    }
+    if (list->head == NULL) {
+        list->head = new_node;
+    }
+    list->tail = new_node; // switch tail to new node
+    list->size++; // inc size
 }
 
 
