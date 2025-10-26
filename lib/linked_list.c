@@ -117,6 +117,25 @@ void ll_add_back(LinkedList *list, Movie *movie) {
     list->size++; // inc size
 }
 
+/**
+ * Finds the and returns the node at the nth index
+ * 
+ * @param list the linked list to search
+ * @param index the index to return
+ */
+node* find_nth(LinkedList *list, int index) {
+    node *curr = list->head;
+    int i = 0;
+    while(curr){
+        if(i == index){
+            return curr;
+        }
+        i++;
+        curr = curr->next;
+    }
+    return NULL;
+}
+
 
 /**
  * Inserts a movie into a linked list at a given index.
@@ -130,7 +149,19 @@ void ll_add_back(LinkedList *list, Movie *movie) {
  * @param n the index to insert at
  */
 void ll_insert(LinkedList *list, Movie *movie, int n) {
-   // STUDENT TODO: Implement
+   if (n < 0 || n > list->size) {
+    return; // do nothing
+   } else if (n == 0) {
+    ll_add_front(list, movie);
+   } else if (n == list->size) {
+    ll_add_back(list, movie);
+   } else {
+    node *new_node = __ll__new_node(movie);
+    new_node->next = find_nth(list, n); // update new node next to curr
+    node *prev = find_nth(list, n - 1);
+    prev->next = new_node; // update the previous to new node
+    list->size++;
+   }
 }
 
 
