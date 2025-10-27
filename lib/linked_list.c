@@ -176,9 +176,18 @@ void ll_insert(LinkedList *list, Movie *movie, int n) {
  */
 Movie * ll_remove_front(LinkedList *list) {
     Movie *movie = NULL;
-    
-    // STUDENT TODO: Implement
-
+    if(list->size == 0) {
+        return movie;
+    }  
+    movie = list->head->movie;
+    node *remove = list->head;
+    node *next = list->head->next;
+    list->head = next;
+    list->size--;
+    if (list->size == 0) {
+        list->tail = list->head;
+    }
+    free(remove);
     return movie;
 }
 
