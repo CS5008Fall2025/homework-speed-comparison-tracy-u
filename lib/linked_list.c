@@ -123,7 +123,7 @@ void ll_add_back(LinkedList *list, Movie *movie) {
  * @param list the linked list to search
  * @param index the index to return
  */
-node* find_nth(LinkedList *list, int index) {
+node* find_index(LinkedList *list, int index) {
     node *curr = list->head;
     int i = 0;
     while(curr){
@@ -157,8 +157,8 @@ void ll_insert(LinkedList *list, Movie *movie, int n) {
     ll_add_back(list, movie);
    } else {
     node *new_node = __ll__new_node(movie);
-    new_node->next = find_nth(list, n); // update new node next to curr
-    node *prev = find_nth(list, n - 1);
+    new_node->next = find_index(list, n); // update new node next to curr
+    node *prev = find_index(list, n - 1);
     prev->next = new_node; // update the previous to new node
     list->size++;
    }
@@ -185,7 +185,7 @@ Movie * ll_remove_front(LinkedList *list) {
     list->head = next;
     list->size--;
     if (list->size == 0) {
-        list->tail = list->head;
+        list->tail = list->head; // this will be null
     }
     free(remove);
     return movie;
@@ -202,7 +202,23 @@ Movie * ll_remove_front(LinkedList *list) {
  */
 Movie * ll_remove_back(LinkedList *list) {
     Movie* movie = NULL;
-    // STUDENT TODO: Implement
+    node *tail_remove = find_index(list, (list->size) - 1);
+    if (list->size == 0) {
+        return NULL;
+    }  
+    else if (list->size == 1) {
+        movie = list->tail->movie;
+        list->tail = NULL;
+        list->head = NULL;
+    } else {
+        movie = list->tail->movie;
+        // get 2nd to last and update next to null
+        node *penultimate = find_index(list, (list->size) - 2);
+        penultimate->next = NULL;
+        list->tail = penultimate;
+    }
+    free(tail_remove);
+    list->size--;
     return movie;
 }
 
@@ -219,7 +235,20 @@ Movie * ll_remove_back(LinkedList *list) {
  */
 Movie * ll_remove(LinkedList *list, int n) {
     Movie * movie = NULL;
-    // STUDENT TODO: Implement
+    if (n < 0 || n >= list->size) {
+        return NULL;
+    } else if (n == 0) {
+        return ll_remove_front(list);
+    } else if (n == list->size - 1) {
+        return ll_remove_back(list);
+    } else {
+        node *prev = find_index(list, n - 1);
+        movie = prev->next->movie;
+        node *after = prev->next->next;
+        free(prev->next);
+        prev->next = after;
+    }
+    list->size--;
     return movie;
 }
 
