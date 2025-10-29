@@ -55,7 +55,7 @@ bool test_ll_add_front() {
     bool passed = true;
     LinkedList *list = new_linked_list();
     ll_add_front(list, movie1);
-    PRINT_DEBUG("Testing adding movie1 to the front of the list");
+    PRINT_DEBUG("Testing adding movie1 to the front of the list\n");
     PRINT_DEBUG("list->size = %d\n", list->size);
     PRINT_DEBUG("list->head->movie->title = %s\n", list->head->movie->title);
     PRINT_DEBUG("list->tail->movie->title = %s\n", list->tail->movie->title);
@@ -99,7 +99,7 @@ bool test_ll_add_back() {
     bool passed = true;
     LinkedList *list = new_linked_list();
     ll_add_back(list, movie1);
-    PRINT_DEBUG("Testing adding movie1 to the back of the list");
+    PRINT_DEBUG("Testing adding movie1 to the back of the list\n");
     PRINT_DEBUG("list->size = %d\n", list->size);
     PRINT_DEBUG("list->head->movie->title = %s\n", list->head->movie->title);
     PRINT_DEBUG("list->tail->movie->title = %s\n", list->tail->movie->title);
@@ -111,7 +111,7 @@ bool test_ll_add_back() {
     passed &= ASSERT_EQUAL(compare_movies(list->tail->movie, movie1), 0);
     
     ll_add_back(list, movie2);
-    PRINT_DEBUG("Testing adding movie2 to the back of the list");
+    PRINT_DEBUG("Testing adding movie2 to the back of the list\n");
     PRINT_DEBUG("list->size = %d\n", list->size);
     PRINT_DEBUG("list->head->movie->title = %s\n", list->head->movie->title);
     PRINT_DEBUG("list->tail->movie->title = %s\n", list->tail->movie->title);
@@ -122,7 +122,7 @@ bool test_ll_add_back() {
     passed &= ASSERT_EQUAL(compare_movies(list->tail->movie, movie2), 0);
     
     ll_add_back(list, movie3);
-    PRINT_DEBUG("Testing adding movie3 to the back of the list");
+    PRINT_DEBUG("Testing adding movie3 to the back of the list\n");
     PRINT_DEBUG("list->size = %d\n", list->size);
     PRINT_DEBUG("list->head->movie->title = %s\n", list->head->movie->title);
     PRINT_DEBUG("list->tail->movie->title = %s\n", list->tail->movie->title);
@@ -144,7 +144,7 @@ bool test_ll_insert() {
     bool passed = true;
     LinkedList *list = new_linked_list();
     ll_insert(list, movie1, 0);
-    PRINT_DEBUG("Testing adding movie1 to the list at index 0");
+    PRINT_DEBUG("Testing adding movie1 to the list at index 0\n");
     PRINT_DEBUG("list->size = %d\n", list->size);
     PRINT_DEBUG("list->head->movie->title = %s\n", list->head->movie->title);
     PRINT_DEBUG("list->tail->movie->title = %s\n", list->tail->movie->title);
@@ -155,7 +155,7 @@ bool test_ll_insert() {
     passed &= ASSERT_EQUAL(compare_movies(list->tail->movie, movie1), 0);
     
     ll_insert(list, movie2, 0);
-    PRINT_DEBUG("Testing adding movie2 to the list at index 0");
+    PRINT_DEBUG("Testing adding movie2 to the list at index 0\n");
     PRINT_DEBUG("list->size = %d\n", list->size);
     PRINT_DEBUG("list->head->movie->title = %s\n", list->head->movie->title);
     PRINT_DEBUG("list->tail->movie->title = %s\n", list->tail->movie->title);
@@ -166,7 +166,7 @@ bool test_ll_insert() {
     passed &= ASSERT_EQUAL(compare_movies(list->tail->movie, movie1), 0);
     
     ll_insert(list, movie3, 1);
-    PRINT_DEBUG("Testing adding movie3 to the list at index 1");
+    PRINT_DEBUG("Testing adding movie3 to the list at index 1\n");
     PRINT_DEBUG("list->size = %d\n", list->size);
     PRINT_DEBUG("list->head->movie->title = %s\n", list->head->movie->title);
     PRINT_DEBUG("list->tail->movie->title = %s\n", list->tail->movie->title);
@@ -191,7 +191,7 @@ bool test_ll_insert_out_of_bounds() {
     bool passed = true;
     LinkedList *list = new_linked_list();
     ll_insert(list, movie1, 1);
-    PRINT_DEBUG("Testing adding movie1 to the list at index 1, when list is empty");
+    PRINT_DEBUG("Testing adding movie1 to the list at index 1, when list is empty\n");
     PRINT_DEBUG("list->size = %d\n", list->size);
     PRINT_DEBUG("list->head = %s\n", ASSERT_NULL(list->head) ? "NULL" : "NOT NULL");
     PRINT_DEBUG("list->tail = %s\n", ASSERT_NULL(list->tail) ? "NULL" : "NOT NULL");
@@ -201,7 +201,7 @@ bool test_ll_insert_out_of_bounds() {
     passed &= ASSERT_NULL(list->tail);
 
     ll_insert(list, movie2, -1);
-    PRINT_DEBUG("Testing adding movie2 to the list at index -1, when list is empty");
+    PRINT_DEBUG("Testing adding movie2 to the list at index -1, when list is empty\n");
     PRINT_DEBUG("list->size = %d\n", list->size);
     PRINT_DEBUG("list->head = %s\n", ASSERT_NULL(list->head) ? "NULL" : "NOT NULL");
     PRINT_DEBUG("list->tail = %s\n", ASSERT_NULL(list->tail) ? "NULL" : "NOT NULL");
@@ -214,7 +214,7 @@ bool test_ll_insert_out_of_bounds() {
     
     ll_add_front(list, movie1);
     ll_insert(list, movie2, 2);
-    PRINT_DEBUG("Testing adding movie2 to the list at index 2, when list has 1 element");
+    PRINT_DEBUG("Testing adding movie2 to the list at index 2, when list has 1 element\n");
     PRINT_DEBUG("list->size = %d\n", list->size);
     PRINT_DEBUG("list->head->movie->title = %s\n", list->head->movie->title);
     PRINT_DEBUG("list->tail->movie->title = %s\n", list->tail->movie->title);
@@ -245,7 +245,7 @@ bool test_ll_remove_front() {
     PRINT_DEBUG("creating a list of size %d\n", list->size);
 
     Movie *removed1 = ll_remove_front(list);
-    PRINT_DEBUG("Testing removing movie3 from the front of the list");
+    PRINT_DEBUG("Testing removing movie3 from the front of the list\n");
     PRINT_DEBUG("list->size = %d\n", list->size);
     PRINT_DEBUG("removed1->title = %s\n", removed1->title);
 
@@ -253,7 +253,7 @@ bool test_ll_remove_front() {
     passed &= ASSERT_EQUAL(list->size, 2);
 
     Movie *removed2 = ll_remove_front(list);
-    PRINT_DEBUG("Testing removing movie2 from the front of the list");
+    PRINT_DEBUG("Testing removing movie2 from the front of the list\n");
     PRINT_DEBUG("list->size = %d\n", list->size);
     PRINT_DEBUG("removed2->title = %s\n", removed2->title);
 
@@ -261,7 +261,7 @@ bool test_ll_remove_front() {
     passed &= ASSERT_EQUAL(list->size, 1);
 
     Movie *removed3 = ll_remove_front(list);
-    PRINT_DEBUG("Testing removing movie1 from the front of the list");
+    PRINT_DEBUG("Testing removing movie1 from the front of the list\n");
     PRINT_DEBUG("list->size = %d\n", list->size);
     PRINT_DEBUG("removed3->title = %s\n", removed3->title);
     
@@ -270,7 +270,7 @@ bool test_ll_remove_front() {
 
     Movie *removed4 = ll_remove_front(list);
 
-    PRINT_DEBUG("Testing removing a movie from the front of the list when the list is empty");
+    PRINT_DEBUG("Testing removing a movie from the front of the list when the list is empty\n");
     PRINT_DEBUG("list->size = %d\n", list->size);
     PRINT_DEBUG("result = %s\n", ASSERT_NULL(removed4) ? "NULL" : "NOT NULL");
 
@@ -298,7 +298,7 @@ bool test_ll_remove_back() {
     passed &= ASSERT_EQUAL(list->size, 3);
 
     Movie *removed1 = ll_remove_back(list);
-    PRINT_DEBUG("Testing removing movie3 from the back of the list");
+    PRINT_DEBUG("Testing removing movie3 from the back of the list\n");
     PRINT_DEBUG("list->size = %d\n", list->size);
     PRINT_DEBUG("removed1->title = %s\n", removed1->title);
 
@@ -306,7 +306,7 @@ bool test_ll_remove_back() {
     passed &= ASSERT_EQUAL(list->size, 2);
 
     Movie *removed2 = ll_remove_back(list);
-    PRINT_DEBUG("Testing removing movie2 from the back of the list");
+    PRINT_DEBUG("Testing removing movie2 from the back of the list\n");
     PRINT_DEBUG("list->size = %d\n", list->size);
     PRINT_DEBUG("removed2->title = %s\n", removed2->title);
 
@@ -322,7 +322,7 @@ bool test_ll_remove_back() {
     */
 
     Movie *removed3 = ll_remove_back(list);
-    PRINT_DEBUG("Testing removing movie1 from the back of the list");
+    PRINT_DEBUG("Testing removing movie1 from the back of the list\n");
     PRINT_DEBUG("list->size = %d\n", list->size);
     PRINT_DEBUG("removed3->title = %s\n", removed3->title);
 
@@ -330,7 +330,7 @@ bool test_ll_remove_back() {
     passed &= ASSERT_EQUAL(list->size, 0);
     
     Movie * removed4 = ll_remove_back(list);
-    PRINT_DEBUG("Testing removing a movie from the back of the list when the list is empty");
+    PRINT_DEBUG("Testing removing a movie from the back of the list when the list is empty\n");
     PRINT_DEBUG("list->size = %d\n", list->size);
     PRINT_DEBUG("result = %s\n", ASSERT_NULL(removed4) ? "NULL" : "NOT NULL");
 
@@ -357,7 +357,7 @@ bool test_ll_remove() {
     passed &= ASSERT_EQUAL(list->size, 3);
 
     Movie *removed1 = ll_remove(list, 1);
-    PRINT_DEBUG("Testing removing movie2 from the list at index 1");
+    PRINT_DEBUG("Testing removing movie2 from the list at index 1\n");
     PRINT_DEBUG("list->size = %d\n", list->size);
     PRINT_DEBUG("removed1->title = %s\n", removed1->title);
 
@@ -365,7 +365,7 @@ bool test_ll_remove() {
     passed &= ASSERT_EQUAL(list->size, 2);
 
     Movie *removed2 = ll_remove(list, 0);
-    PRINT_DEBUG("Testing removing movie1 from the list at index 0");
+    PRINT_DEBUG("Testing removing movie1 from the list at index 0\n");
     PRINT_DEBUG("list->size = %d\n", list->size);
     PRINT_DEBUG("removed2->title = %s\n", removed2->title);
 
@@ -373,7 +373,7 @@ bool test_ll_remove() {
     passed &= ASSERT_EQUAL(list->size, 1);
 
     Movie *removed3 = ll_remove(list, 0);
-    PRINT_DEBUG("Testing removing movie3 from the list at index 0");
+    PRINT_DEBUG("Testing removing movie3 from the list at index 0\n");
     PRINT_DEBUG("list->size = %d\n", list->size);
     PRINT_DEBUG("removed3->title = %s\n", removed3->title);
 
@@ -458,18 +458,18 @@ bool test_ll_get_out_of_bounds() {
     ll_add_back(list, movie3);
     PRINT_DEBUG("creating a list of size %d\n", list->size)
 
-    PRINT_DEBUG("Testing getting a movie from the list at index 3");
+    PRINT_DEBUG("Testing getting a movie from the list at index 3\n");
     passed &= ASSERT_NULL(ll_get(list, 3));
     passed &= ASSERT_EQUAL(list->size, 3);
 
-    PRINT_DEBUG("Testing getting a movie from the list at index -1");
+    PRINT_DEBUG("Testing getting a movie from the list at index -1\n");
     passed &= ASSERT_NULL(ll_get(list, -1));
     passed &= ASSERT_EQUAL(list->size, 3);
 
     free_linked_list(list);
     list = new_linked_list();
 
-    PRINT_DEBUG("Testing getting a movie from the list at index 0 when the list is empty");
+    PRINT_DEBUG("Testing getting a movie from the list at index 0 when the list is empty\n");
     passed &= ASSERT_NULL(ll_get(list, 0));
     passed &= ASSERT_EQUAL(list->size, 0);
 
@@ -700,7 +700,7 @@ TestingSet * init_testing_set() {
     add_test(set, "new_linked_list() creates an empty linked list", GROUP_GENERAL, 
         test_new_linked_list);  
     add_test(set, "ll_add_front() adds a node to the front of the list", GROUP_ADD, 
-        test_ll_add_front);  
+       test_ll_add_front);  
     add_test(set, "ll_add_back() adds a node to the back of the list", GROUP_ADD,
         test_ll_add_back); 
     add_test(set, "ll_insert() adds a node to the list at the given index", GROUP_ADD,
@@ -729,11 +729,6 @@ TestingSet * init_testing_set() {
         test_sorted_list_find);
     add_test(set, "sorted_list_remove() properly removes movies based on title", GROUP_SORTED,
         test_sorted_list_remove);
-
-
-
-        
-
 
     return set;
 }
