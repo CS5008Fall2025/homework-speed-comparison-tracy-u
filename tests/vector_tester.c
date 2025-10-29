@@ -716,7 +716,7 @@ bool test_find_in_sorted_vector() {
     PRINT_DEBUG("Initializing an empty vector to test find_in_sorted_vector\n");
     
     PRINT_DEBUG("Adding movies to the vector to test find_in_sorted_vector\n");
-
+    
     add_to_sorted_vector(vector, movie3);
     add_to_sorted_vector(vector, movie1);
     add_to_sorted_vector(vector, movie4);

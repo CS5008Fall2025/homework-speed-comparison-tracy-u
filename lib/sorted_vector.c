@@ -24,7 +24,34 @@
  * @param movie the movie to add
 */
 void add_to_sorted_vector(SortedMovieVector * vector, Movie * movie) {
-    // STUDENT TODO: implement this function
+    int i = 0;
+    if (vector->size != 0) {
+        while ((i < vector->size) && (compare_movies(vector->movies[i], movie) <= 0)) {
+            i++;
+        }
+    }
+    vector_insert(vector, movie, i);
+}
+
+
+Movie* movie_binary_search(SortedMovieVector * vector, const char * title, int low, int high) {
+    int mid = low + (high - low) / 2;
+    printf("mid: %d\n", mid);
+
+    printf("SIZE: %d", vector->size);
+    printf("HIGH: %d, LOW: %d, MID: %d", high, low, mid);
+    if (high >= low) {
+        if (strcasecmp(vector->movies[mid]->title, title) == 0) {
+            return vector->movies[mid];
+        }
+        if (strcasecmp(vector->movies[mid]->title, title) > 0) {
+            return movie_binary_search(vector, title, low, mid - 1);
+        }
+        if (strcasecmp(vector->movies[mid]->title, title) < 0) {
+            return movie_binary_search(vector, title, mid + 1, high);
+        }
+    }
+    return NULL;
 }
 
 /**
@@ -44,9 +71,10 @@ void add_to_sorted_vector(SortedMovieVector * vector, Movie * movie) {
  */
 Movie * find_in_sorted_vector(SortedMovieVector * vector, const char * title) {
     // STUDENT TODO: implement this function
-
-    // if the movie is not found, return NULL
-    return NULL;
+    if (vector->size == 0) {
+        return NULL;
+    }
+    return movie_binary_search(vector, title, 0, vector->size - 1);
 }
 
 /**
