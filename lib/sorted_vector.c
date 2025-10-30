@@ -36,10 +36,6 @@ void add_to_sorted_vector(SortedMovieVector * vector, Movie * movie) {
 
 Movie* movie_binary_search(SortedMovieVector * vector, const char * title, int low, int high) {
     int mid = low + (high - low) / 2;
-    printf("mid: %d\n", mid);
-
-    printf("SIZE: %d", vector->size);
-    printf("HIGH: %d, LOW: %d, MID: %d", high, low, mid);
     if (high >= low) {
         if (strcasecmp(vector->movies[mid]->title, title) == 0) {
             return vector->movies[mid];
@@ -70,12 +66,28 @@ Movie* movie_binary_search(SortedMovieVector * vector, const char * title, int l
  * @return the movie if found, NULL otherwise
  */
 Movie * find_in_sorted_vector(SortedMovieVector * vector, const char * title) {
-    // STUDENT TODO: implement this function
     if (vector->size == 0) {
         return NULL;
     }
     return movie_binary_search(vector, title, 0, vector->size - 1);
 }
+
+Movie* movie_binary_remove(SortedMovieVector * vector, const char * title, int low, int high) {
+    int mid = low + (high - low) / 2;
+    if (high >= low) {
+        if (strcasecmp(vector->movies[mid]->title, title) == 0) {
+            return vector_remove(vector, mid);
+        }
+        if (strcasecmp(vector->movies[mid]->title, title) > 0) {
+            return movie_binary_remove(vector, title, low, mid - 1);
+        }
+        if (strcasecmp(vector->movies[mid]->title, title) < 0) {
+            return movie_binary_remove(vector, title, mid + 1, high);
+        }
+    }
+    return NULL;
+}
+
 
 /**
  * Checks if the sorted vector contains a movie with the given title.
@@ -94,6 +106,8 @@ Movie * find_in_sorted_vector(SortedMovieVector * vector, const char * title) {
  */
 Movie* sorted_vector_remove(SortedMovieVector *vector, const char *title){
     // STUDENT TODO: implement this function
-
-    return NULL; // not found
+    if (vector->size == 0) {
+        return NULL;
+    }
+    return movie_binary_remove(vector, title, 0, vector->size - 1);
 }
