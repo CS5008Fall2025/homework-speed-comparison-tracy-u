@@ -1,9 +1,9 @@
 /**
  * Basic BST implementation.
  *
- * @author: STUDENT ADD YOUR NAME
+ * @author: Tracy U
  * @class: CS 5008
- * @term: UPDATE WITH CURRENT SEMESTER
+ * @term: Fall 2025
  */
 
 #include <stdbool.h>
