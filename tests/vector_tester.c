@@ -760,7 +760,6 @@ bool test_find_in_sorted_vector() {
 */
 bool test_sorted_vector_remove() {
     bool passed = true;
-    printf("passed: %d\n", passed);
 
     SortedMovieVector *vector = new_vector();
     
@@ -770,45 +769,31 @@ bool test_sorted_vector_remove() {
     add_to_sorted_vector(vector, movie1);
     add_to_sorted_vector(vector, movie4);
     add_to_sorted_vector(vector, movie2);
-    printf("size: %d\n", vector->size);
 
     __debug_print_vector(vector);
 
     Movie * removed = sorted_vector_remove(vector, movie1->title);
     PRINT_DEBUG("Removed movie: %s\n", removed->title);
-    printf("%s\n",vector_to_str(vector));
 
     passed &= ASSERT_EQUAL(vector->size, 3);
-    printf("size: %d\n", vector->size);
-    printf("passed: %d\n", passed);
-
     passed &= ASSERT_EQUAL(vector->capacity, INITIAL_CAPACITY);
-    printf("passed: %d\n", passed);
-
     passed &= ASSERT_EQUAL(vector->movies[0], movie2);
     passed &= ASSERT_EQUAL(vector->movies[1], movie3);
     passed &= ASSERT_EQUAL(vector->movies[2], movie4);
     passed &= ASSERT_EQUAL(removed, movie1);
-    printf("passed: %d", passed);
 
 
     removed = sorted_vector_remove(vector, movie2->title);
     PRINT_DEBUG("Removed movie: %s\n", removed->title);
-    printf("%s\n",vector_to_str(vector));
-
 
     passed &= ASSERT_EQUAL(vector->size, 2);
     passed &= ASSERT_EQUAL(vector->capacity, INITIAL_CAPACITY);
     passed &= ASSERT_EQUAL(vector->movies[0], movie3);
     passed &= ASSERT_EQUAL(vector->movies[1], movie4);
     passed &= ASSERT_EQUAL(removed, movie2);
-    printf("passed: %d\n", passed);
-
-
 
 
     free_vector(vector);
-
     return passed;
 }
 
