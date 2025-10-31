@@ -68,6 +68,7 @@ bool test_bst_add()
     passed &= ASSERT_EQUAL(movie2, bst->root->movie);
     passed &= ASSERT_NULL(bst->root->left);
     passed &= ASSERT_NULL(bst->root->right);
+    printf("passed? %d\n", passed);
 
     PRINT_DEBUG("Testing adding %s to the BST\n", movie_to_str(movie1));
 

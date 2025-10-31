@@ -91,8 +91,22 @@ void clear_and_free_bst(BST * bst) {
  * @param movie the movie to add 
 */
 void __bst__add(BSTNode * curr, Movie * movie) {
-   // STUDENT TODO: implement this function
+    if (compare_movies(curr->movie, movie) < 0) {
+        if (curr->right == NULL) {
+            curr->right = __bst__new_node(movie);
+        } else {
+            __bst__add(curr->right, movie);
+        }
+    }
+    else if (compare_movies(curr->movie, movie) > 0) {
+        if (curr->left == NULL) {
+            curr->left = __bst__new_node(movie);
+        } else {
+            __bst__add(curr->left, movie);
+        }
+    }
 }
+
 /**
  * Adds the given movie into the BST. 
  * Handles the root case, but then calls the recursive helper
@@ -104,12 +118,16 @@ void __bst__add(BSTNode * curr, Movie * movie) {
  * @param movie the movie to insert
 */
 void bst_add(BST * bst, Movie * movie) {
+    // printf("root title %s", bst->root->movie->title);
+    // printf("MOVIE %s", movie->title);
     if (bst->root == NULL) {
         bst->root = __bst__new_node(movie);
         bst->size++;
         return;
     }
+
     BSTNode * curr = bst->root;
+    // printf("root title %s\n", movie_to_str(bst->root->movie));
     __bst__add(curr, movie);
     bst->size++;
 }
@@ -186,8 +204,19 @@ void bst_remove(BST * bst, Movie * movie) {
 */
 BSTNode * __bst__find(BSTNode * curr, const char * title) {
    // STUDENT TODO: implement this function
-
-   return NULL; // STUDENT TODO: update this return statement if needed
+    if(curr == NULL){
+        return NULL;
+    }
+   else if (strcasecmp(curr->movie->title, title) == 0) {
+       return curr;
+   }
+   else if (strcasecmp(curr->movie->title, title) < 0) {
+       return __bst__find(curr->right, title);
+   }
+   else if (strcasecmp(curr->movie->title, title) > 0) {
+       return __bst__find(curr->left, title);
+   }
+   return NULL;
 }
 
 /**
