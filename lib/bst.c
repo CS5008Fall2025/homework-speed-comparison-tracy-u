@@ -203,7 +203,6 @@ void bst_remove(BST * bst, Movie * movie) {
  * @return the node that was found
 */
 BSTNode * __bst__find(BSTNode * curr, const char * title) {
-   // STUDENT TODO: implement this function
     if(curr == NULL){
         return NULL;
     }
@@ -252,19 +251,29 @@ Movie * bst_find(BST * bst, const char * title) {
 */
 char * __bst__update_str(Movie * movie, char * str) {
     char * movie_str;
+    printf("start str in __bst__update_str: %s\n", str);
+
     if (movie == NULL) {
         movie_str = (char *) "NULL"; // used by BREATH_FIRST to print null nodes, others ignore this.
     }else {
         movie_str = movie_to_str(movie);
     }
+    printf("before str realloc?\n");
+
     str = realloc(str, sizeof(char) * (strlen(str) + strlen(movie_str) + 5));
+    printf("after str realloc?\n");
+
     if (strlen(str) > 0) {
         strcat(str, ", ");
     }
     strcat(str, movie_str);
+    
     if (movie != NULL) {
-        free(movie_str); // since "NULL" is on the stack, we don't need to free directly
+        printf("in movie is not null");
+       // free(movie_str); // since "NULL" is on the stack, we don't need to free directly
     }
+    printf("start str in end __bst__update_str: %s\n", str);
+
     return str;
 }
 
@@ -279,7 +288,16 @@ char * __bst__update_str(Movie * movie, char * str) {
  * @return the string that was appended to
 */
 char * __bst__to_str_postorder(BSTNode * curr, char * str) {
-    // STUDENT TODO: implement this function
+    if(curr == NULL){
+        return str;
+    } 
+    if(curr->left != NULL){
+        str = __bst__to_str_postorder(curr->left, str);
+    }
+	if(curr->right != NULL){
+		str = __bst__to_str_postorder(curr->right, str);
+	}
+    str = __bst__update_str(curr->movie, str);
     return str;
 }
 
