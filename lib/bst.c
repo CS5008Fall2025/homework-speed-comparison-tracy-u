@@ -51,7 +51,7 @@ void __bst__free_node(BSTNode * node, bool clear) {
     if (node == NULL) {
         return;
     }
-    // STUDENT TODO: update this comment - is this, pre, post, or in order traversal?
+    // STUDENT TODO: update this comment - is this, pre, post, or in order traversal? post order
     __bst__free_node(node->left, clear);
     __bst__free_node(node->right, clear);
     if (clear) {
