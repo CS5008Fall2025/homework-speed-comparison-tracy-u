@@ -422,8 +422,18 @@ char * bst_to_str(BST * tree, int traversal) {
  * @param index the current index in the array, used as a pointer to be updated across all recursive calls
  * 
 */
-void __bst__to_sorted_array(BSTNode * curr, Movie ** array, int * index) {
-    // STUDENT TODO: implement this function
+void __bst__to_sorted_array(BSTNode * curr, Movie ** array, int * index) {    
+    if(curr == NULL){
+        return;
+    } 
+    if(curr->left != NULL){
+        __bst__to_sorted_array(curr->left, array, index);
+    }
+    array[*index] = curr->movie;
+    (*index)++;
+	if(curr->right != NULL){
+        __bst__to_sorted_array(curr->right, array, index);
+	}
 }
 
 /**

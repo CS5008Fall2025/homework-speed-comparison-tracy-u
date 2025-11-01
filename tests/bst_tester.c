@@ -508,11 +508,20 @@ bool test_bst_to_sorted_array() {
     Movie ** array = bst_to_sorted_array(bst);
 
     passed &= ASSERT_EQUAL(movie1, array[0]);
+    printf("passed? %d\n", passed);
     passed &= ASSERT_EQUAL(movie2, array[1]);
+    printf("passed? %d\n", passed);
     passed &= ASSERT_EQUAL(movie3, array[2]);
+    printf("passed? %d\n", passed);
     passed &= ASSERT_EQUAL(movie4, array[3]);
+    printf("passed? %d\n", passed);
     passed &= ASSERT_EQUAL(movie6, array[4]);
+    printf("passed? %d\n", passed);
+    
+    for (int i = 0; i < 5; i++ ) {
+        printf("movie %d: %s\n", i, movie_to_str(array[i]));
 
+    }
 
     free(array);
     free_bst(bst);
